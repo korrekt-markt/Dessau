@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>KORREKT. Regionalgesellschaft Dessau-Anhalt</title>
-  <meta name="description" content="Die KORREKT. Regionalgesellschaft Dessau-Anhalt verantwortet Aufbau, Betrieb und Organisation der KORREKT.-Märkte in der Region – strukturiert, regional und digital." />
+  <meta name="description" content="Die KORREKT. Regionalgesellschaft Dessau-Anhalt entwickelt, betreibt und gestaltet moderne Nahversorgung für die Region – echt, fair, voll korrekt." />
 
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
@@ -19,139 +19,236 @@
       font-family: "Montserrat", sans-serif;
       background: #111;
       color: #fff;
+      overflow-x: hidden;
     }
 
+    /* HEADER */
     header {
       position: fixed;
       top: 0;
       width: 100%;
+      box-sizing: border-box;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 2.6rem;
+      justify-content: space-between;
       background: linear-gradient(90deg, #333, #444);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      padding: 0.8rem 2.6rem;
       z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .logo img { height: 44px; }
 
-    .icons img { height: 32px; }
-
-    section { padding: 3rem; }
+    .icons img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
 
     /* HERO */
     .hero {
       margin-top: 4.8rem;
-      height: 75vh;
       position: relative;
-      background-image: url("https://images.unsplash.com/photo-1618223652173-1e5e71f7a0c1?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
+      height: 80vh;
+      overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
+    .slide {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
-    .hero-content {
-      position: relative;
-      max-width: 700px;
+    .slide.active { opacity: 1; }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-50%);
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin: 0;
+      color: #ff0a7a;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .hero-buttons a {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff0a7a, #00a7a0);
+      color: white;
+      border-radius: 25px;
+      padding: 0.7rem 1.4rem;
+      margin-top: 1.5rem;
+      margin-right: 0.5rem;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .hero-buttons a:hover {
+      transform: scale(1.05);
+    }
+
+    .arrow {
+      position: absolute;
       top: 50%;
       transform: translateY(-50%);
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10;
+      padding: 0.3rem 0.7rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      user-select: none;
     }
 
-    .hero h1 {
-      font-size: 3rem;
-      color: #ff0a7a;
+    .arrow.left { left: 1rem; }
+    .arrow.right { right: 1rem; }
+
+    /* HANDLUNGSFELDER */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 1.5rem;
+      padding: 3rem;
+    }
+
+    .cat {
+      background: #222;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .cat:hover { transform: translateY(-6px); }
+
+    .cat h3 {
       margin: 0;
+      color: #ff0a7a;
+      font-size: 1.4rem;
     }
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      line-height: 1.5;
-    }
-
-    .hero a {
-      display: inline-block;
-      margin-top: 1.6rem;
-      margin-right: 0.6rem;
-      padding: 0.7rem 1.4rem;
-      border-radius: 25px;
-      background: linear-gradient(45deg, #ff0a7a, #00a7a0);
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* INFO */
-    .info {
+    /* SCHWERPUNKTE */
+    .products {
+      padding: 3rem;
       background: #1a1a1a;
     }
 
-    .info h2 {
+    .products h2 {
+      text-align: center;
       color: #ff0a7a;
-      margin-top: 0;
+      font-size: 2rem;
     }
 
-    .info p {
-      max-width: 900px;
-      line-height: 1.6;
-    }
-
-    /* AUFGABEN */
-    .tasks {
+    .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
       gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    .task {
-      background: #2a2a2a;
+    .product {
+      background: #333;
       border-radius: 12px;
       padding: 1.8rem;
+      text-align: center;
     }
 
-    .task h3 {
-      margin-top: 0;
+    .product h4 { margin: 0; }
+
+    .price {
+      margin-top: 0.6rem;
       color: #00a7a0;
+      font-weight: 600;
+    }
+
+    /* REGION */
+    .stores {
+      padding: 3rem 2rem;
+      background: #222;
+      text-align: center;
+    }
+
+    .stores h2 {
+      color: #ff0a7a;
+      font-size: 2rem;
+    }
+
+    .stores p {
+      max-width: 700px;
+      margin: 0.8rem auto 0;
+      line-height: 1.5;
     }
 
     /* korrektPlus */
-    .kp {
+    .payback {
+      padding: 3rem;
       background: #111;
     }
 
-    .kp-box {
+    .payback-box {
       background: #333;
       border-radius: 15px;
       padding: 2rem;
       display: flex;
       gap: 1.5rem;
-      flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .kp-box img { height: 50px; }
+    .payback-box img { height: 50px; }
+
+    .payback-box h3 {
+      margin: 0;
+      color: #00a7a0;
+    }
+
+    .payback-box a {
+      display: inline-block;
+      margin-top: 0.6rem;
+      background: linear-gradient(45deg, #ff0a7a, #00a7a0);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      text-decoration: none;
+    }
 
     /* FOOTER */
     footer {
-      background: #000;
-      padding: 3rem;
+      background: #111;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
       gap: 2rem;
+      padding: 3rem;
     }
 
     footer h3 { color: #ff0a7a; }
 
     footer a {
-      display: block;
       color: #bbb;
       text-decoration: none;
+      display: block;
       margin: 0.4rem 0;
     }
 
@@ -161,7 +258,7 @@
       background: #000;
       text-align: center;
       padding: 1rem;
-      color: #777;
+      color: #aaa;
       font-size: 0.9rem;
     }
   </style>
@@ -171,7 +268,7 @@
 
 <header>
   <div class="logo">
-    <img src="https://korrekt-markt.de/korrekt.png" alt="KORREKT">
+    <img src="https://korrekt-markt.de/korrekt.png" alt="KORREKT Logo">
   </div>
   <div class="icons">
     <a href="https://plus.korrekt-markt.de">
@@ -181,73 +278,70 @@
 </header>
 
 <section class="hero">
-  <div class="hero-content">
-    <h1>KORREKT. Regionalgesellschaft Dessau-Anhalt</h1>
-    <p>
-      Die Regionalgesellschaft Dessau-Anhalt ist verantwortlich für Aufbau,
-      Betrieb und Weiterentwicklung der KORREKT.-Märkte in der Region.
-      Sie bündelt Organisation, Systeme und Standards unter einer Struktur.
-    </p>
-    <a href="#aufgaben">Unsere Aufgaben</a>
-    <a href="https://plus.korrekt-markt.de">korrektPlus</a>
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1618223652173-1e5e71f7a0c1?auto=format&fit=crop&w=1600&q=80');">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>KORREKT. Regionalgesellschaft Dessau-Anhalt</h1>
+      <p>
+        Wir entwickeln, betreiben und gestalten moderne Nahversorgung
+        in Dessau-Anhalt – regional verwurzelt, digital gedacht und konsequent fair.
+      </p>
+      <div class="hero-buttons">
+        <a href="#region">🌍 Unsere Region</a>
+        <a href="https://plus.korrekt-markt.de">📱 korrektPlus</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600185365483-26d7a0a9b122?auto=format&fit=crop&w=1600&q=80');">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>KORREKT. denkt regional</h1>
+      <p>
+        Als Regionalgesellschaft tragen wir Verantwortung für Standorte,
+        Arbeitsplätze und nachhaltige Entwicklung.
+      </p>
+    </div>
+  </div>
+
+  <div class="arrow left" onclick="prevSlide()">❮</div>
+  <div class="arrow right" onclick="nextSlide()">❯</div>
+</section>
+
+<section class="categories" id="region">
+  <div class="cat"><h3>🌍 Region & Verantwortung</h3></div>
+  <div class="cat"><h3>🏪 Märkte & Standorte</h3></div>
+  <div class="cat"><h3>👥 Ausbildung & Jobs</h3></div>
+  <div class="cat"><h3>📱 Digital & korrektPlus</h3></div>
+  <div class="cat"><h3>🤝 Partner & Kommunen</h3></div>
+  <div class="cat"><h3>📰 Presse & Öffentlichkeit</h3></div>
+</section>
+
+<section class="products">
+  <h2>Schwerpunkte der Regionalgesellschaft</h2>
+  <div class="product-grid">
+    <div class="product"><h4>Regionale Wertschöpfung</h4><p class="price">Zusammenarbeit mit Erzeugern</p></div>
+    <div class="product"><h4>Moderne Nahversorgung</h4><p class="price">Stadt & ländlicher Raum</p></div>
+    <div class="product"><h4>Arbeitsplätze & Ausbildung</h4><p class="price">Perspektiven vor Ort</p></div>
+    <div class="product"><h4>Digitale Systeme</h4><p class="price">korrektPlus & Prozesse</p></div>
   </div>
 </section>
 
-<section class="info">
-  <h2>Einordnung</h2>
+<section class="stores">
+  <h2>KORREKT. in Dessau-Anhalt</h2>
   <p>
-    Die KORREKT. Regionalgesellschaft Dessau-Anhalt fungiert als operative
-    und organisatorische Einheit für alle KORREKT.-Standorte in der Region.
-    Sie ist keine einzelne Filiale, sondern die zentrale Struktur für Planung,
-    Betrieb, Prozesse, Personal und digitale Systeme.
+    Die KORREKT. Regionalgesellschaft Dessau-Anhalt verantwortet bestehende
+    und zukünftige Standorte in der Region und arbeitet eng mit Kommunen,
+    Partnern und Initiativen zusammen.
   </p>
 </section>
 
-<section id="aufgaben">
-  <h2>Aufgaben der Regionalgesellschaft</h2>
-
-  <div class="tasks">
-    <div class="task">
-      <h3>Standortorganisation</h3>
-      <p>Planung, Aufbau und Betrieb regionaler KORREKT.-Märkte.</p>
-    </div>
-
-    <div class="task">
-      <h3>Prozesse & Systeme</h3>
-      <p>Einheitliche Abläufe, Kassensysteme, Warenwirtschaft und IT-Strukturen.</p>
-    </div>
-
-    <div class="task">
-      <h3>Personal & Ausbildung</h3>
-      <p>Einsatzplanung, Ausbildung, interne Organisation und Standards.</p>
-    </div>
-
-    <div class="task">
-      <h3>Sortiment & Struktur</h3>
-      <p>Grundsortimente, regionale Anpassungen und Marktstruktur.</p>
-    </div>
-
-    <div class="task">
-      <h3>Digitale Produkte</h3>
-      <p>Einbindung und Betrieb von korrektPlus und digitalen Services.</p>
-    </div>
-
-    <div class="task">
-      <h3>Weiterentwicklung</h3>
-      <p>Optimierung bestehender Märkte und Vorbereitung neuer Standorte.</p>
-    </div>
-  </div>
-</section>
-
-<section class="kp">
-  <div class="kp-box">
+<section class="payback">
+  <div class="payback-box">
     <img src="https://korrekt-markt.de/korrektPlus-web_transparent.png" alt="">
     <div>
-      <h3>korrektPlus</h3>
-      <p>
-        korrektPlus ist das digitale Kunden- und Servicesystem der KORREKT.-Märkte.
-        Betrieb, Anbindung und Weiterentwicklung erfolgen regional gebündelt.
-      </p>
+      <h3>korrektPlus – regional vernetzt</h3>
+      <p>Punkte, Angebote und digitale Services für die Region.</p>
       <a href="https://plus.korrekt-markt.de">Mehr erfahren</a>
     </div>
   </div>
@@ -256,8 +350,9 @@
 <footer>
   <div>
     <h3>Regionalgesellschaft</h3>
-    <a href="#">Aufgaben & Struktur</a>
+    <a href="#">Unsere Rolle</a>
     <a href="#">Standorte</a>
+    <a href="#">Partner</a>
   </div>
   <div>
     <h3>Unternehmen</h3>
@@ -269,12 +364,37 @@
     <h3>Karriere</h3>
     <a href="#">Jobs</a>
     <a href="#">Ausbildung</a>
+    <a href="#">Initiativbewerbung</a>
+  </div>
+  <div>
+    <h3>Presse</h3>
+    <a href="#">Pressemitteilungen</a>
+    <a href="#">Downloads</a>
   </div>
 </footer>
 
 <div class="copyright">
   © 2025 KORREKT. Regionalgesellschaft Dessau-Anhalt
 </div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function showSlide(n) {
+    slides.forEach((s, i) => s.classList.toggle("active", i === n));
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+</script>
 
 </body>
 </html>
